@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    
+
+    <script>
+
+        let computerSelection;
+        let playerChoice;
+        let playerScore = 0;
+        let computerScore = 0;
+        let rounds = 5;
+
+        function computerPlay() {
+            const rps = ["rock", "paper", "scissors"];
+            computerSelection = rps[Math.floor(Math.random() * rps.length)];
+            return computerSelection;
+        }
+
+        function playerSelection() {
+            let choice = prompt("Choose Rock, Paper, or Scissors");
+            playerChoice = choice.toLowerCase();
+            if (playerChoice === "rock" ||
+            playerChoice === "paper" ||
+            playerChoice === "scissors") {
+                    return playerChoice;
+                } else {
+                    return "Invalid choice. Please choose again.";
+                }
+        }
+
+        function singleRound(playerChoice, computerSelection) {
+            
+            if (playerChoice === computerSelection) {
+                return "It's a tie!";
+            }
+
+            switch(playerChoice) {
+                case "rock":
+                    if (computerSelection === "scissors") {
+                        playerScore++;
+                        return "You win! Rock beats Scissors";
+                    } else {
+                        computerScore++;
+                        return "You lose! Paper beats Rock";
+                    }
+                    break;
+
+                case "paper":
+                    if (computerSelection === "rock") {
+                        playerScore++;
+                        return "You win! Paper beats Rock";
+                    } else {
+                        computerScore++;
+                        return "You lose! Scissors beats Paper";
+                    }
+                    break;
+
+                case "scissors": 
+                    if (computerSelection === "paper") {
+                        playerScore++;
+                        return "You win! Scissors beats Paper";
+                    } else {
+                        computerScore++;
+                        return "You lose! Rock beats scissors";
+                    }
+                    break;
+                default:
+                    return "Something went wrong";
+            }
+        }
+
+        function game() {
+            
+
+            for (let i = 1; i <= rounds; i++) {
+
+                playerSelection();
+                computerPlay();
+                singleRound(playerChoice, computerSelection);
+                console.log(playerChoice, computerSelection);
+                console.log(playerScore, computerScore);
+            }
+
+            let finalScore = "The final score is: player: " + playerScore + " computer: " + computerScore;
+            return finalScore;
+        }
+
+
+    </script>
+
+</body>
+</html>
